@@ -1,0 +1,29 @@
+Ronaldo do Carmo
+rcarmo
+s123456
+
+
+O que vc quer fazer?
+1-Cadastro de Usuário
+2-Sair
+
+
+Logica da opção 1
+informe Nome Comple
+informe Nome de Usuario
+informe a senha
+Confirme a senha
+
+confirmar o Cadastro
+1- Sim
+2- Nao
+
+logica do Sim
+O que vc quer fazer?
+1-Cadastro de Usuário
+2-Consultar Usuário
+3-Sair
+
+Logica da opção 2
+Constar Usuario
+Informe o Nome de Usuario: valido ou Invalido
