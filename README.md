@@ -2,6 +2,7 @@
 formulários de cadastros
 
 Feature: Formulário de Usuário
+
 Como um Usuário
 Quero cadastrar meus dados
 Para acessar o sistema
