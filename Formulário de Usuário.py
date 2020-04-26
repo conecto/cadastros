@@ -3,7 +3,7 @@
 # Ainda não sei fazer upload de avatar
 
 pessoa = {}
-lista = []
+lista = [0]
 print('='*26)
 print(f"{'FORMULÁRIO DE USUÁRIO':^26}")
 print('='*26)
@@ -11,7 +11,7 @@ while True:
     pessoa['nome'] = input('Informe seu nome completo: ').strip().title()
     while True:
         pessoa['user'] = input('Nome de usuário: ')
-        if pessoa['user'] != lista[0]['user']:
+        if pessoa['user'] not in lista:
             break
         else:
             print('\033[33mUsuário não esta disponível\033[m')
