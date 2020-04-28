@@ -42,9 +42,9 @@ Usuário: {pessoa["usuário"]:>20}
                 print('\033[31mResposta Inválida.\033[m')
         if resp in 's':
             lista.append(pessoa.copy())
-            arquivo.write(pessoa['nome'])
-            arquivo.write(pessoa['usuário'])
-            arquivo.write(pessoa['senha'])
+            arquivo.write(f"\n{pessoa['nome']}")
+            arquivo.write(f"\n{pessoa['usuário']}")
+            arquivo.write(f"\n{pessoa['senha']}")
             pessoa.clear()
             break
         else:
@@ -53,9 +53,9 @@ Usuário: {pessoa["usuário"]:>20}
             print('-'*40)
     while True:
         r = input("""O que deseja fazer?
-    (1) => Adicionar usuário.
-    (2) => Consultar usuário.
-    (3) => Sair.""")
+(1) => Adicionar usuário.
+(2) => Consultar usuário.
+(3) => Sair.""")
         if r not in '123':
             print('\033[31mERRO! Digite um número do menu.\033[m')
         elif r == '1':
@@ -65,8 +65,8 @@ Usuário: {pessoa["usuário"]:>20}
             print('\033[33m***  CONSULTANDO UM USUÁRIO ***\033[m')
             while True:
                 escolha = input("""Escolha uma Opção:
-    (1) => Nome.
-    (2) => Usuário.""")
+(1) => Nome.
+(2) => Usuário.""")
                 print('='*40)
                 if escolha not in '12':
                     print('\033[31mERRO! Digite um número do menu.\033[m')
