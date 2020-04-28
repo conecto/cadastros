@@ -2,6 +2,7 @@
 # Criei esse código, vê se é válido ai blz
 # Ainda não sei fazer upload de avatar
 
+arquivo = open('arquivo','r+')
 pessoa = {}
 lista = []
 print('='*40)
@@ -11,11 +12,18 @@ while True:
     while True:
         pessoa['nome'] = input('Informe seu nome completo: ').strip()
         while True:
+            arquivo = open('arquivo', 'r+')
+            u = 0
             pessoa['usuário'] = input('Nome de usuário: ')
-            if pessoa['usuário'] not in lista:
+            for linha in arquivo:
+                if pessoa['usuário'] in linha:
+                    print('\033[31mUsuário já existente!\033[m')
+                    u = 1
+                    break
+                else:
+                    u = 0
+            if u == 0:
                 break
-            else:
-                print('\033[33mUsuário não esta disponível\033[m')
         pessoa['senha'] = input('Digite uma senha: ')
         while True:
             csenha = input('Confirme sua senha: ')
@@ -25,15 +33,18 @@ while True:
                 print('\033[31mConfirmação inválida.\033[m')
         while True:
             resp = input(f'''Confirme seus dados:
-    Nome:    {pessoa["nome"]:>20}
-    Usuário: {pessoa["usuário"]:>20}
-    {"SIM":>4}{"NÂO":>16}: ''').strip().lower()[0]
+Nome:    {pessoa["nome"]:>20}
+Usuário: {pessoa["usuário"]:>20}
+{"SIM":>4}{"NÂO":>16}: ''').strip().lower()[0]
             if resp == 's' or resp == 'n':
                 break
             else:
                 print('\033[31mResposta Inválida.\033[m')
         if resp in 's':
             lista.append(pessoa.copy())
+            arquivo.write(pessoa['nome'])
+            arquivo.write(pessoa['usuário'])
+            arquivo.write(pessoa['senha'])
             pessoa.clear()
             break
         else:
@@ -95,4 +106,5 @@ while True:
             break
     if r == '3':
         break
+arquivo.close()
 print(')'*15,'FINALIZANDO', '('*15)
