@@ -2,7 +2,6 @@
 # Criei esse código, vê se é válido ai blz
 # Ainda não sei fazer upload de avatar
 
-arquivo = open('arquivo','r+')
 pessoa = {}
 lista = []
 print('='*40)
@@ -12,7 +11,7 @@ while True:
     while True:
         pessoa['nome'] = input('Informe seu nome completo: ').strip()
         while True:
-            arquivo = open('arquivo', 'r+')
+            arquivo = open('arquivo.txt', 'r+')
             u = 0
             pessoa['usuário'] = input('Nome de usuário: ')
             for linha in arquivo:
@@ -46,6 +45,7 @@ Usuário: {pessoa["usuário"]:>20}
             arquivo.write(f"\n{pessoa['usuário']}")
             arquivo.write(f"\n{pessoa['senha']}")
             pessoa.clear()
+            arquivo.close()
             break
         else:
             print('-'*40)
@@ -106,5 +106,4 @@ Usuário: {pessoa["usuário"]:>20}
             break
     if r == '3':
         break
-arquivo.close()
 print(')'*15,'FINALIZANDO', '('*15)
