@@ -15,6 +15,7 @@ while True:
         cadastrar(arq, nome, user, senha)
     elif resposta == 2:
         while True:
+            print(linha())
             r = menu(['Nome', 'Usuário', 'Sair'])
             if r == 1:
                 lerNome(arq)
