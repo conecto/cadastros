@@ -1,4 +1,8 @@
 from lib.interface import *
+import sqlite3
+
+connection = sqlite3.connect('cad.db')
+c = connection.cursor()
 
 
 def arquivoExiste(nome):
@@ -120,3 +124,12 @@ def usuarioConfirma(msg, nome):
         else:
             break
     return u
+
+
+def create_table():
+    c.execute('CREATE TABLE IF NOT EXISTS dados (Nome string, Usuário string, Senha string)')
+
+
+def dataentry(nome, usuario, senha):
+    c.execute(f"INSERT INTO  dados VALUES('{nome}', '{usuario}', '{senha}' )")
+    connection.commit()
