@@ -1,14 +1,21 @@
+from lib.interface import *
 
-from lib.arquivo import *
-
-connection = sqlite3.connect('cad.db')
-c = connection.cursor()
-
-create_table()
-
-arq = 'DadosUsuarios.txt'
-if not arquivoExiste(arq):
-    criarArquivo(arq)
+arq = 'cadastrousuarios'
+tab = 'pessoas'
+titulo('INFORME A FORMA DE ARMAZENAMENTO')
+escolha = menu(['Banco de Dados', 'Arquivos txt'])
+# Escolha de como gravar os dados adicionados
+if escolha == 1:
+    from lib.bancoDados import *
+    create_bd(arq)
+    create_table(arq, tab)
+    print('BANCO DE DADOS SELECIONADO!')
+else:
+    from lib.arquivo import *
+    if not arquivoExiste(arq):
+        criarArquivo(arq)
+    print('ARQUIVOS EM .txt SELECIONADO!')
+# Programa Principal
 titulo('MENU PRINCIPAL')
 while True:
     resposta = menu(['Cadastrar Usuário', 'Consultar Pessoa Cadastrada', 'Sair'])
@@ -16,7 +23,7 @@ while True:
         while True:
             subtitulo('Cadastrar usuário')
             nome = input('Nome: ')
-            user = usuarioConfirma('Usuário: ', arq)
+            user = usuarioConfirma('Usuário: ', arq, tab)
             senha = leiaSenha('Senha: ')
             while True:
                 print(linha())
@@ -30,12 +37,14 @@ R: """).strip().upper()[0]
                     break
             if conf == 'S':
                 break
-
-        cadastrar(arq, nome, user, senha)
-        dataentry(nome, user, senha)
+        if escolha == 1:
+            cadastrar(arq, tab, nome, user, senha)
+        else:
+            cadastrar(arq, nome, user, senha)
     elif resposta == 2:
         while True:
-            print(linha())
+            #print(linha())
+            subtitulo('Consultar por:')
             r = menu(['Nome', 'Usuário', 'Sair'])
             if r == 1:
                 lerNome(arq)
