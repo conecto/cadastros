@@ -36,7 +36,7 @@ def lerNome(nome):
             print('Digite \033[31mEXIT\033[m para sair.')
             a = open(nome, 'rt')
             s = 0
-            n = input('Nome cadastrado: ')
+            n = input('\033[34mNome cadastrado\033[m: ')
             if n == 'EXIT':
                 break
             for l in a:
@@ -65,14 +65,14 @@ def lerUsuario(nome):
             print('Digite \033[31mEXIT\033[m para sair.')
             a = open(nome, 'rt')
             s = 0
-            n = input('Usuário cadastrado: ')
+            n = input('\033[34mUsuário cadastrado\033[m: ')
             if n == 'EXIT':
                 break
             for l in a:
                 dado = l.split(';')
                 dado[2] = dado[2].replace('\n', '')
                 if dado[1] == n:
-                    print(f'\033[34mNome:\033[m {dado[0]:<31} \033[34mUsuário:\033[m {dado[1]:>3}')
+                    print(f'\033[34mNome:\033[m {dado[0]:<28} \033[34mUsuário:\033[m {dado[1]:>3}')
                     s = 1
             if s == 1:
                 a.close()
@@ -110,7 +110,7 @@ def leiaSenha(msg):
     return senha
 
 
-def usuarioConfirma(msg, nome):
+def usuarioConfirma(msg, nome='', tab=''):
     while True:
         s = 0
         u = input(msg)
@@ -125,11 +125,3 @@ def usuarioConfirma(msg, nome):
             break
     return u
 
-
-def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS dados (Nome string, Usuário string, Senha string)')
-
-
-def dataentry(nome, usuario, senha):
-    c.execute(f"INSERT INTO  dados VALUES('{nome}', '{usuario}', '{senha}' )")
-    connection.commit()
